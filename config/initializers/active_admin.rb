@@ -4,19 +4,19 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Rubybattle Com"
+  config.site_title = 'Rubybattle Com'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  # config.site_title_link = "/"
+  # config.site_title_link = '/'
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  # config.site_title_image = 'logo.png'
 
   # == Default Namespace
   #
@@ -40,11 +40,11 @@ ActiveAdmin.setup do |config|
   # within a namespace:
   #
   #   config.namespace :admin do |admin|
-  #     admin.site_title = "Custom Admin Title"
+  #     admin.site_title = 'Custom Admin Title'
   #   end
   #
   # This will ONLY change the title for the admin section. Other
-  # namespaces will continue to use the main "site_title" configuration.
+  # namespaces will continue to use the main 'site_title' configuration.
 
   # == User Authentication
   #
@@ -67,7 +67,7 @@ ActiveAdmin.setup do |config|
   # In case you prefer Pundit over other solutions you can here pass
   # the name of default policy class. This policy will be used in every
   # case when Pundit is unable to find suitable policy.
-  # config.pundit_default_policy = "MyDefaultPunditPolicy"
+  # config.pundit_default_policy = 'MyDefaultPunditPolicy'
 
   # If you wish to maintain a separate set of Pundit policies for admin
   # resources, you may set a namespace here that Pundit will search
@@ -75,7 +75,7 @@ ActiveAdmin.setup do |config|
   # config.pundit_policy_namespace = :admin
 
   # You can customize your CanCan Ability class name here.
-  # config.cancan_ability_class = "Ability"
+  # config.cancan_ability_class = 'Ability'
 
   # You can specify a method to be called on unauthorized access.
   # This is necessary in order to prevent a redirect loop which happens
@@ -157,7 +157,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+  config.filter_attributes = %i[encrypted_password password password_confirmation]
 
   # == Localize Date/Time Format
   #
@@ -232,7 +232,7 @@ ActiveAdmin.setup do |config|
   #
   #   config.namespace :admin do |admin|
   #     admin.build_menu :utility_navigation do |menu|
-  #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
+  #       menu.add label: 'My Great Website', url: 'http://www.mygreatwebsite.com', html_options: { target: :blank }
   #       admin.add_logout_button_to_menu menu
   #     end
   #   end
@@ -241,7 +241,7 @@ ActiveAdmin.setup do |config|
   #
   #   config.namespace :admin do |admin|
   #     admin.build_menu :default do |menu|
-  #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
+  #       menu.add label: 'My Great Website', url: 'http://www.mygreatwebsite.com', html_options: { target: :blank }
   #     end
   #   end
 
@@ -279,7 +279,7 @@ ActiveAdmin.setup do |config|
 
   # == Filters
   #
-  # By default the index screen includes a "Filters" sidebar on the right
+  # By default the index screen includes a 'Filters' sidebar on the right
   # hand side with a filter for each attribute of the registered model.
   # You can enable or disable them for all resources here.
   #
