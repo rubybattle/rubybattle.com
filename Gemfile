@@ -13,6 +13,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'redis'
 gem 'sidekiq'
 
+gem 'activeadmin'
+gem 'devise'
+gem 'draper'
+gem 'pundit'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
