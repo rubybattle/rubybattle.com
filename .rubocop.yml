@@ -1,13 +1,15 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/schema.rb'
     - 'bin/*'
     - 'tmp/*'
     - 'vendor/*'
     - 'log/*'
+    - 'node_modules/**/*'
 
-Metrics/LineLength:
-  Max: 120
+Bundler/OrderedGems:
+  Enabled: false
 
 Metrics/MethodLength:
   Max: 25
@@ -26,6 +28,11 @@ Metrics/ClassLength:
 
 Metrics/BlockLength:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - 'config/application.rb'
 
 Style/Documentation:
   Enabled: false
@@ -48,17 +55,20 @@ Metrics/CyclomaticComplexity:
 Style/NumericLiterals:
   Enabled: false
 
-Layout/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'config/initializers/devise.rb'
+
 
 Layout/MultilineMethodCallBraceLayout:
   EnforcedStyle: new_line
 
-Layout/AlignHash:
-  Enabled: false
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
 
 Style/Lambda:
   Enabled: false
-
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
