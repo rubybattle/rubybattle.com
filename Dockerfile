@@ -1,40 +1,35 @@
-# from ruby MRI version 2.6:
-FROM ruby:2.7.2
+# syntax = docker/dockerfile:1
 
-# set up contact person for our project
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.3.0
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+
+# Throw-away build stage to reduce size of final image
+FROM base as build
+
 LABEL maintainer='martins.kruze@gmail.com'
 
-# nodejs: NodeJS for Rails runtime
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get update -yqq && apt-get install -yq --no-install-recommends \
+    build-essential \
+    gnupg2 \
+    less \
+    libpq-dev \
+    postgresql-client \
+    libvips42 \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# yarn: Yarn for assets
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | \
-  tee /etc/apt/sources.list.d/yarn.list
-
-# update current list of package providers and install folowing linkux packages:
-# nodejs: NodeJS for Rails runtime
-# yarn: Yarn for assets
-# imagemagick: Linux image manimulation toolkit
-# remove all downloaded lists with rm -rf /var/lib/apt/lists/*
-RUN apt-get update -yqq \
-  && apt-get install -yqq --no-install-recommends nodejs yarn postgresql-client \
-  && rm -rf /var/lib/apt/lists/*
-
-# make application direcory and direcory to mount wkhtmltox bin files
-RUN mkdir /rubybattle.com
-
-# change working direcotry to it
-WORKDIR /rubybattle.com
-
-# copy Gemfile and Gemfile.lock to our working direcotory
-COPY Gemfile* /rubybattle.com/
-
-# install gems
+RUN mkdir /seeker
+WORKDIR /seeker
+COPY Gemfile* /seeker/
 RUN bundle install
 
-# copy our project
-COPY . /rubybattle.com
+COPY . /seeker
 
-# script that removes tmp/pids/server.pid file if it exists (need ensure it is executable with chmod +x docker-entrypoint.sh)
+# Final stage for app image
+FROM base
+
+# Run and own only the runtime files as a non-root user for security
+RUN useradd rails --create-home --shell /bin/bash
+USER rails:rails
+
 ENTRYPOINT ["./docker-entrypoint.sh"]

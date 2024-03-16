@@ -1,10 +1,9 @@
-version: "3.9"
 services:
   web:
     build: .
     command: bin/rails s -p 3000 -b 0.0.0.0
     volumes:
-      - .:/rubybattle.com
+      - .:/seeker
     ports:
       - '3000:3000'
       - '4000:4000'
@@ -26,7 +25,7 @@ services:
   selenium_chrome:
     image: selenium/standalone-chrome-debug
     volumes:
-      - .:/rubybattle.com
+      - .:/seeker
     logging:
       driver: none
     ports:
@@ -35,7 +34,7 @@ services:
     build: .
     command: bundle exec sidekiq -C ./config/sidekiq.yml
     volumes:
-      - .:/rubybattle.com
+      - .:/seeker
     env_file:
       - .env/development/web
       - .env/development/database
